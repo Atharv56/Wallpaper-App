@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(wallpaper_app LANGUAGES CXX)
+project(wallpaper_app_1 LANGUAGES CXX)
 
-set(BINARY_NAME "wallpaper_app")
+set(BINARY_NAME "wallpaper_app_1")
 
 cmake_policy(SET CMP0063 NEW)
 
