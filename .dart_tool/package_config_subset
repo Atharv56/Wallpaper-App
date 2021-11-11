@@ -2,6 +2,10 @@ wallpaper_app_1
 2.12
 file:///Users/atharvsalian/Documents/GitHub/Wallpaper-App/
 file:///Users/atharvsalian/Documents/GitHub/Wallpaper-App/lib/
+animated_splash_screen
+2.12
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/animated_splash_screen-1.1.0/
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/animated_splash_screen-1.1.0/lib/
 async
 2.12
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.1/
@@ -38,6 +42,10 @@ flutter_lints
 2.12
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/lib/
+images
+2.7
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/images-1.0.0/
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/images-1.0.0/lib/
 lints
 2.12
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1/
@@ -50,6 +58,10 @@ meta
 2.12
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0/
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0/lib/
+page_transition
+2.12
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/
+file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/
 path
 2.12
 file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/

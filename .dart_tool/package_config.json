@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "animated_splash_screen",
+      "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/animated_splash_screen-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "async",
       "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.1",
       "packageUri": "lib/",
@@ -68,6 +74,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "images",
+      "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/images-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
       "packageUri": "lib/",
@@ -82,6 +94,12 @@
     {
       "name": "meta",
       "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "page_transition",
+      "rootUri": "file:///Users/atharvsalian/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -152,7 +170,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-11-10T17:00:42.600671Z",
+  "generated": "2021-11-11T13:02:23.286541Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }
