@@ -12,6 +12,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    var animatedSplashScreen = AnimatedSplashScreen(
+      splash: 'wallpaper2.jpg',
+      duration: 3000,
+      splashTransition: SplashTransition.rotationTransition,
+      backgroundColor: Colors.purple,
+      nextScreen: const MyHomePage(
+        title: 'Wallpaper-App',
+      ),
+    );
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -25,15 +35,6 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.purple,
-      ),
-      home: AnimatedSplashScreen(
-        splash: 'wallpaper2.jpg',
-        duration: 3000,
-        splashTransition: SplashTransition.rotationTransition,
-        backgroundColor: Colors.purple,
-        nextScreen: const MyHomePage(
-          title: 'Wallpaper-App',
-        ),
       ),
     );
   }
