@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     var animatedSplashScreen = AnimatedSplashScreen(
-      splash: 'wallpaper2.jpg',
-      duration: 3000,
+      splash: Icons.ac_unit_rounded,
+      duration: 1500,
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: Colors.purple,
       nextScreen: const MyHomePage(
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
+      home: animatedSplashScreen
     );
   }
 }
