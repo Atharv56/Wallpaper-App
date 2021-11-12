@@ -86,14 +86,47 @@ class _WallpaperPageState extends State<WallpaperPage> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 6),
                     itemBuilder: (context, i) {
-                      return Container(
-                          decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(urldata[i]['urls']['regular']),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FullImageView(
+                                        url: urldata[i]['urls']['regular'],
+                                      )));
+                        },
+                        child: Hero(
+                          tag: 'full',
+                          child: Container(
+                              decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  NetworkImage(urldata[i]['urls']['regular']),
+                            ),
+                          )),
                         ),
-                      ));
+                      );
                     }),
           ),
+        ));
+  }
+}
+
+// ignore: must_be_immutable
+class FullImageView extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  var url;
+  // ignore: use_key_in_widget_constructors
+  FullImageView({this.url});
+  // ignore: empty_constructor_bodies
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+        tag: 'full',
+        child: Container(
+          decoration: BoxDecoration(
+              image:
+                  DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)),
         ));
   }
 }
