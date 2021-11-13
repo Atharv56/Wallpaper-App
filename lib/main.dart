@@ -122,11 +122,12 @@ class FullImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-        tag: 'full',
-        child: Container(
-          decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: NetworkImage(url), fit: BoxFit.cover)),
-        ));
+      tag: 'full',
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+        ),
+      ),
+    );
   }
 }
