@@ -57,8 +57,6 @@ class _WallpaperPageState extends State<WallpaperPage> {
     setState(() {
       // ignore: unused_local_variable
       urldata = jsonDecode(res.body);
-      // ignore: avoid_print
-      print(urldata);
     });
   }
 
