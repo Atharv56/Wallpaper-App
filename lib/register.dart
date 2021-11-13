@@ -1,30 +1,30 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'register.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/gestures.dart';
+import 'login.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'main.dart';
 import 'routes.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegPage extends StatefulWidget {
+  const RegPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegPageState createState() => _RegPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegPageState extends State<RegPage> {
   String? name = "";
+  String? confirmpass = "";
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
 
-  moveToHome(BuildContext context) async {
+  moveToLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await Navigator.pushNamed(context, MyRoutes.loginRoute);
       setState(() {
         changeButton = false;
       });
@@ -49,18 +49,20 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 const SizedBox(height: 15.0),
                 Image.asset(
-                  "assets/images/hey.png",
+                  "assets/images/register.png",
                   fit: BoxFit.cover,
                   //height: 1000,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Welcome $name",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
+                const Text(
+                  "Enter your registration details",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 32.0),
@@ -68,31 +70,52 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       TextFormField(
                         decoration: const InputDecoration(
-                          hintText: "Enter Username",
-                          labelText: "Username",
-                        ),
+                            hintText: "Enter your Full Name",
+                            labelText: "Full Name"),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter a valid input";
                           }
                           return null;
                         },
-                        onChanged: (value) {
-                          name = value;
-                          setState(() {});
+                      ),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: "Enter your email ID",
+                            labelText: "E-Mail"),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter a valid input";
+                          }
+                          return null;
                         },
                       ),
                       TextFormField(
                         obscureText: true,
                         decoration: const InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Password",
-                        ),
+                            hintText: "Enter password", labelText: "Password"),
+                        validator: (value) {
+                          confirmpass = value;
+                          if (value!.isEmpty) {
+                            return "Enter a valid input";
+                          } else if (value.length < 6) {
+                            return "Password length must be at least 6 characters";
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                            hintText: "Re-enter your password",
+                            labelText: "Confirm Password"),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter a valid input";
                           } else if (value.length < 6) {
                             return "Password length must be at least 6 characters";
+                          } else if (value != confirmpass) {
+                            return "Passwords do not match";
                           }
                           return null;
                         },
@@ -107,11 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                         child: InkWell(
                           onTap: () async {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const WallpaperPage(),
-                              ),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()));
                           },
                           child: AnimatedContainer(
                             duration: const Duration(seconds: 1),
@@ -121,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: changeButton
                                 ? const Icon(Icons.done, color: Colors.white)
                                 : const Text(
-                                    "Login",
+                                    "Register",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -130,34 +151,6 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: "If you don't have an account, click on ",
-                    style: GoogleFonts.lato(
-                      fontSize: 15.0,
-                      color: context.accentColor,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "Register",
-                        style: GoogleFonts.lato(
-                          decoration: TextDecoration.underline,
-                          color: Colors.indigo,
-                          fontSize: 15.0,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegPage(),
-                              ),
-                            );
-                          },
                       ),
                     ],
                   ),

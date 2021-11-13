@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:animated_splash_screen/animated_splash_screen.dart'
     show AnimatedSplashScreen, SplashTransition;
 import 'package:flutter/material.dart';
+import 'routes.dart';
+import 'login.dart';
+import 'register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,11 +30,12 @@ class _MyAppState extends State<MyApp> {
       splashTransition: SplashTransition.rotationTransition,
     );
     return MaterialApp(
-        title: 'WallpaperApp',
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-        ),
-        home: animatedSplashScreen);
+      title: 'WallpaperApp',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: const LoginPage(),
+    );
   }
 }
 
@@ -67,48 +71,55 @@ class _WallpaperPageState extends State<WallpaperPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'WallpaperApp',
-        theme: ThemeData(primaryColor: Colors.purple),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('WallpaperApp'),
-            elevation: 0.0,
-            backgroundColor: Colors.purple,
-          ),
-          body: Center(
-            child: urldata == null
-                ? const CircularProgressIndicator()
-                : GridView.builder(
-                    itemCount: 30,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisSpacing: 6,
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 6),
-                    itemBuilder: (context, i) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FullImageView(
-                                        url: urldata[i]['urls']['regular'],
-                                      )));
-                        },
-                        child: Hero(
-                          tag: 'full',
-                          child: Container(
-                              decoration: BoxDecoration(
+      title: 'WallpaperApp',
+      theme: ThemeData(primaryColor: Colors.deepPurple),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('WallpaperApp'),
+          elevation: 0.0,
+          backgroundColor: Colors.deepPurple,
+        ),
+        body: Center(
+          child: urldata == null
+              ? const CircularProgressIndicator()
+              : GridView.builder(
+                  itemCount: 30,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 6,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 6),
+                  itemBuilder: (context, i) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FullImageView(
+                                      url: urldata[i]['urls']['regular'],
+                                    )));
+                      },
+                      child: Hero(
+                        tag: 'full',
+                        child: Container(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
                               image:
                                   NetworkImage(urldata[i]['urls']['regular']),
                             ),
-                          )),
+                          ),
                         ),
-                      );
-                    }),
-          ),
-        ));
+                      ),
+                    );
+                  },
+                ),
+        ),
+      ),
+      routes: {
+        MyRoutes.loginRoute: (context) => const LoginPage(),
+        MyRoutes.regRoute: (context) => const RegPage(),
+        MyRoutes.homeRoute: (context) => const WallpaperPage(),
+      },
+    );
   }
 }
 
