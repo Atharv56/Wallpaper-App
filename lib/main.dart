@@ -98,14 +98,14 @@ class _WallpaperPageState extends State<WallpaperPage> {
                                       url: urldata[i]['urls']['regular'],
                                     )));
                       },
-                      child: Hero(
-                        tag: 'full',
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image:
-                                  NetworkImage(urldata[i]['urls']['regular']),
-                            ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            
+                            image:
+                                NetworkImage(urldata[i]['urls']['thumb']),
                           ),
                         ),
                       ),
