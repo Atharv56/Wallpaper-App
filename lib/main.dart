@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:animated_splash_screen/animated_splash_screen.dart'
     show AnimatedSplashScreen, SplashTransition;
@@ -71,14 +72,16 @@ class _WallpaperPageState extends State<WallpaperPage> {
         theme: ThemeData(primaryColor: Colors.purple),
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('WallpaperApp'),
+            title: const Text('WallpaperApp'), 
             elevation: 0.0,
             backgroundColor: Colors.purple,
           ),
           body: Center(
+            
             child: urldata == null
                 ? const CircularProgressIndicator()
                 : GridView.builder(
+                    scrollDirection: Axis.vertical,
                     itemCount: 30,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -106,7 +109,8 @@ class _WallpaperPageState extends State<WallpaperPage> {
                           )),
                         ),
                       );
-                    }),
+                    }
+                  ),
           ),
         ));
   }
