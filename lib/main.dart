@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       splash: Icons.ac_unit_rounded,
       duration: 1500,
       backgroundColor: Colors.white,
-      nextScreen: const WallpaperPage(),
+      nextScreen: const LoginPage(),
       splashTransition: SplashTransition.rotationTransition,
     );
     return MaterialApp(
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const LoginPage(),
+      home: animatedSplashScreen,
     );
   }
 }

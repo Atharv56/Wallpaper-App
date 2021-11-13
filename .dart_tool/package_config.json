@@ -302,11 +302,7 @@
       "languageVersion": "2.12"
     }
   ],
-<<<<<<< Updated upstream
-  "generated": "2021-11-13T07:20:05.274940Z",
-=======
-  "generated": "2021-11-13T07:18:53.034856Z",
->>>>>>> Stashed changes
+  "generated": "2021-11-13T07:21:53.543813Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }
