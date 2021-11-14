@@ -1,165 +1,222 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'login.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'main.dart';
 import 'routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:untitled1/loginScreen.dart';
+import 'package:untitled1/main.dart';
+import 'package:untitled1/mainscreen.dart';
+import 'package:untitled1/progressDialog.dart';
 
-class RegPage extends StatefulWidget {
-  const RegPage({Key? key}) : super(key: key);
+class registrationScreen extends StatelessWidget {
+  static const String idScreen = "register";
 
-  @override
-  _RegPageState createState() => _RegPageState();
-}
-
-class _RegPageState extends State<RegPage> {
-  String? name = "";
-  String? confirmpass = "";
-  bool changeButton = false;
-  final _formKey = GlobalKey<FormState>();
-
-  moveToLogin(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        changeButton = true;
-      });
-      await Future.delayed(const Duration(seconds: 1));
-      await Navigator.pushNamed(context, MyRoutes.loginRoute);
-      setState(() {
-        changeButton = false;
-      });
-    }
-  }
+  TextEditingController nameTextEditingConntroller = TextEditingController();
+  TextEditingController emailTextEditingConntroller = TextEditingController();
+  TextEditingController aadharTextEditingConntroller = TextEditingController();
+  TextEditingController passwordTextEditingConntroller = TextEditingController();
+  TextEditingController phoneTextEditingConntroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Material(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                const SizedBox(height: 15.0),
-                Image.asset(
-                  "assets/images/register.png",
-                  fit: BoxFit.cover,
-                  //height: 1000,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Enter your registration details",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 32.0),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            hintText: "Enter your Full Name",
-                            labelText: "Full Name"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Enter a valid input";
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            hintText: "Enter your email ID",
-                            labelText: "E-Mail"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Enter a valid input";
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            hintText: "Enter password", labelText: "Password"),
-                        validator: (value) {
-                          confirmpass = value;
-                          if (value!.isEmpty) {
-                            return "Enter a valid input";
-                          } else if (value.length < 6) {
-                            return "Password length must be at least 6 characters";
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            hintText: "Re-enter your password",
-                            labelText: "Confirm Password"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Enter a valid input";
-                          } else if (value.length < 6) {
-                            return "Password length must be at least 6 characters";
-                          } else if (value != confirmpass) {
-                            return "Passwords do not match";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Material(
-                        color: Colors.deepPurple,
-                        borderRadius:
-                            BorderRadius.circular(changeButton ? 20 : 10),
-                        child: InkWell(
-                          onTap: () async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()));
-                          },
-                          child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            width: changeButton ? 42 : 110,
-                            height: 40,
-                            alignment: Alignment.center,
-                            child: changeButton
-                                ? const Icon(Icons.done, color: Colors.white)
-                                : const Text(
-                                    "Register",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(height: 35.0,),
+              Image(
+                image: AssetImage("images/3115.png"),
+                width: 390.0,
+                height: 250.0,
+                alignment: Alignment.center,
+              ),
+              SizedBox(height: 1.0,),
+              Text(
+                "Register",
+                style: TextStyle(fontSize: 24.0, fontFamily: "Brand Bold"),
+                textAlign: TextAlign.center,
+              ),
+              Padding(padding: EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 1.0,),
+                    TextField(
+                      controller: nameTextEditingConntroller,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          labelText: "Name",
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
                           ),
-                        ),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0
+                          )
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 1.0,),
+                    TextField(
+                      controller: emailTextEditingConntroller,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          labelText: "Email",
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 1.0,),
+                    TextField(
+                      controller: aadharTextEditingConntroller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          labelText: "Aadhar Card Number",
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 1.0,),
+                    TextField(
+                      controller: passwordTextEditingConntroller,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 1.0,),
+                    TextField(
+                      controller: phoneTextEditingConntroller,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                          labelText: "Phone Number",
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 1.0,),
+                    TextButton(
+                      child: Text(
+                        'Register', style: TextStyle(fontSize: 20.0),),
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: Colors.black,
+                        shadowColor: Colors.white,
+                        elevation: 5,
+                      ),
+                      onPressed: () {
+                        if (nameTextEditingConntroller.text.length < 3) {
+                          displayToastMessage(
+                              "Name must be atleast 3 characters long",
+                              context);
+                        }
+                        else if (!emailTextEditingConntroller.text.contains("@")) {
+                          displayToastMessage("Invalid email address", context);
+                        }
+                        else if (phoneTextEditingConntroller.text.isEmpty) {
+                          displayToastMessage(
+                              "Phone number is mandatory", context);
+                        }
+                        else if (aadharTextEditingConntroller.text.isEmpty) {
+                          displayToastMessage(
+                              "Aadhar card number is mandatory", context);
+                        }
+                        else if (passwordTextEditingConntroller.text.length < 6) {
+                          displayToastMessage(
+                              "Password must be atleast 6 characters long",
+                              context);
+                        }
+                        else {
+                          registerNewUser(context);
+                        }
+                      },
+                    ),
+                    TextButton(
+                      child: Text('Already have an account? Sign in',
+                        style: TextStyle(
+                            fontSize: 17.0, fontFamily: "Brant Bold"),),
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                        backgroundColor: Colors.white,
+                        shadowColor: Colors.blue,
+                        elevation: 5,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, LoginScreen.idScreen, (route) => false);
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
     );
+  }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  void registerNewUser(BuildContext context) async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context)
+        {return ProgressDialog(message: "Creating New Account",);}
+    );
+
+    final User firebaseUser = (await _firebaseAuth
+        .createUserWithEmailAndPassword(email: emailTextEditingConntroller.text,
+        password: passwordTextEditingConntroller.text).catchError((errMsg){Navigator.pop(context);
+          displayToastMessage("Error:" +errMsg.toString(), context);
+    })).user;
+
+    if (firebaseUser != null) //user created
+        {
+
+          Map userDataMap = {
+            "name": nameTextEditingConntroller.text.trim(),
+            "email": emailTextEditingConntroller.text.trim(),
+            "phone": phoneTextEditingConntroller.text.trim(),
+            "aadhar": aadharTextEditingConntroller.text.trim(),
+          };
+          usersRef.child(firebaseUser.uid).set(userDataMap);
+          displayToastMessage("Account Created", context);
+
+          Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen, (route) => false);
+
+        }
+    else {Navigator.pop(context);
+      displayToastMessage("New user account has not been created", context);
+
+    }
+  }
+
+  displayToastMessage(String message, BuildContext context){
+    Fluttertoast.showToast(msg: message);
   }
 }
