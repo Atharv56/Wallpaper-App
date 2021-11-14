@@ -113,8 +113,8 @@ class _WallpaperPageState extends State<WallpaperPage> {
         ),
       ),
       routes: {
-        MyRoutes.loginRoute: (context) => const LoginPage(),
-        MyRoutes.regRoute: (context) => const RegPage(),
+        MyRoutes.loginRoute: (context) => const LoginScreen(),
+        MyRoutes.regRoute: (context) => const registrationScreen(),
         MyRoutes.homeRoute: (context) => const WallpaperPage(),
       },
     );
