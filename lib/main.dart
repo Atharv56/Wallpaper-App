@@ -57,8 +57,6 @@ class _WallpaperPageState extends State<WallpaperPage> {
     setState(() {
       // ignore: unused_local_variable
       urldata = jsonDecode(res.body);
-      // ignore: avoid_print
-      print(urldata);
     });
   }
 
@@ -98,14 +96,14 @@ class _WallpaperPageState extends State<WallpaperPage> {
                                       url: urldata[i]['urls']['regular'],
                                     )));
                       },
-                      child: Hero(
-                        tag: 'full',
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image:
-                                  NetworkImage(urldata[i]['urls']['regular']),
-                            ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            
+                            image:
+                                NetworkImage(urldata[i]['urls']['thumb']),
                           ),
                         ),
                       ),
